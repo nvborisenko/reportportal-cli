@@ -39,3 +39,6 @@ reportportal test get
 ```
 
 This command should show all tests that belong to previously set launch.
+
+# Configuration
+Open question where to store configuration. In current user's local location, or in working directory, or in environment variables.
