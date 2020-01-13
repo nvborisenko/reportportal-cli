@@ -13,7 +13,7 @@ dotnet tool install reportportal -g
 # Usage
 Then we need configure a connection with api
 ```cmd
-reportportal configure -s http://<host>/api/v1 -p <some_project> -u <some_api_token>
+reportportal connect -s http://<host>/api/v1 -p <some_project> -t <some_api_token>
 ```
 
 And start a launch
