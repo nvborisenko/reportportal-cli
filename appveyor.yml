@@ -17,7 +17,7 @@ test_script:
   - dotnet test
 
 after_test:
-  - dotnet pack /p:version=$(GitVersion_SemVer)
+  - dotnet pack /p:version=%GitVersion_SemVer%
 
 artifacts:
   - path: 'nupkg\*.nupkg'
