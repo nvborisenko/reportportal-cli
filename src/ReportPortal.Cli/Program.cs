@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ReportPortal.Cli.Commands;
 using System;
 using System.CommandLine;
 using System.Threading.Tasks;
@@ -37,8 +36,6 @@ namespace ReportPortal.Cli
             serviceCollection.AddScoped<Settings.IConnectionRepository, Settings.ConnectionRepository>();
 
             serviceCollection.AddSingleton<Http.IApiClient, Http.ApiClient>();
-
-            serviceCollection.AddScoped<LaunchCommandExecutor>();
 
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }

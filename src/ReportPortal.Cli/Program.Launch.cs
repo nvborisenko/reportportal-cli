@@ -1,7 +1,7 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Invocation;
 using Microsoft.Extensions.DependencyInjection;
-using ReportPortal.Cli.Commands;
+using ReportPortal.Cli.Commands.Launch;
 
 namespace ReportPortal.Cli
 {
@@ -11,7 +11,7 @@ namespace ReportPortal.Cli
         {
             var launchCommand = new Command("launch");
 
-            launchCommand.Handler = CommandHandler.Create(() => _serviceProvider.GetRequiredService<LaunchCommandExecutor>().GetLaunches());
+            launchCommand.Handler = CommandHandler.Create(() => _serviceProvider.GetService<LaunchCommandExecutor>().GetLaunches());
 
             rootCommand.Add(launchCommand);
         }

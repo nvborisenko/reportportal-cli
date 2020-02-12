@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportPortal.Cli.Commands
+namespace ReportPortal.Cli.Commands.Launch
 {
     class LaunchCommandExecutor
     {
