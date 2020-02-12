@@ -1,25 +1,46 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ReportPortal.Cli.Commands;
+using System;
 using System.CommandLine;
-using System.CommandLine.Builder;
-using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 
 namespace ReportPortal.Cli
 {
     public partial class Program
     {
+        static IServiceProvider _serviceProvider;
+
         public static async Task<int> Main(string[] args, IConsole console = null)
         {
+            ConfigureServices(console);
+
             var rpCommand = new RootCommand("Interact with Report Portal API");
 
             AddConnectCommand(rpCommand);
             AddLaunchCommand(rpCommand);
 
-            var b = new CommandLineBuilder(rpCommand)
-                .UseDefaults();
-            var parser = b.Build();
+            return await rpCommand.InvokeAsync(args, console);
+        }
 
-            return await parser.InvokeAsync(args, console);
+        static void ConfigureServices(IConsole console)
+        {
+            var serviceCollection = new ServiceCollection();
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile(Settings.ConnectionRepository.HomeConfigFile, optional: true)
+                .AddEnvironmentVariables("ReportPortal_Cli_");
+            var configuration = builder.Build();
+
+            serviceCollection.AddSingleton(console);
+            serviceCollection.AddSingleton(configuration);
+            serviceCollection.AddScoped<Settings.IConnectionRepository, Settings.ConnectionRepository>();
+
+            serviceCollection.AddSingleton<Http.IApiClient, Http.ApiClient>();
+
+            serviceCollection.AddScoped<LaunchCommandExecutor>();
+
+            _serviceProvider = serviceCollection.BuildServiceProvider();
         }
     }
 }

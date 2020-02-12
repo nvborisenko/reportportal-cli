@@ -1,8 +1,10 @@
 ﻿using System;
 using System.CommandLine;
-using System.Collections.Generic;
-using System.Text;
 using System.CommandLine.Invocation;
+using ReportPortal.Cli.Settings;
+using Microsoft.Extensions.DependencyInjection;
+using ReportPortal.Cli.Http;
+using System.Threading.Tasks;
 
 namespace ReportPortal.Cli
 {
@@ -34,9 +36,20 @@ namespace ReportPortal.Cli
             rootCommand.AddCommand(connectCommand);
         }
 
-        static void Connect(Uri server, string project, string token)
+        static async Task Connect(Uri server, string project, string token)
         {
-            Console.WriteLine($"S: {server}, P: {project}, T: {token}");
+            var console = _serviceProvider.GetService<IConsole>();
+
+            var connectionInfo = new ConnectionInfo(server, project, token);
+
+            var apiClient = new ApiClient(connectionInfo);
+            var user = await apiClient.GetCurrentUserAsync();
+            console.Out.Write($"Welcome, {user.Fullname}!");
+
+
+            var connectionInfoRepository = _serviceProvider.GetService<IConnectionRepository>();
+
+            connectionInfoRepository.SaveConnectionInfo(connectionInfo);
         }
     }
 }
