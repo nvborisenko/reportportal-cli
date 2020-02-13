@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReportPortal.Cli
 {
-    public partial class Program
+    partial class Program
     {
         static IServiceProvider _serviceProvider;
 
