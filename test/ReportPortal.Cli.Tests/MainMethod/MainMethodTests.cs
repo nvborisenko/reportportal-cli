@@ -11,17 +11,10 @@ namespace ReportPortal.Cli.Tests.MainMethod
         public async Task Should_Output_Usage_Without_Commands()
         {
             var console = new TestConsole();
-            var exitCode = await ReportPortal.Cli.Program.Main(null, console);
+            var exitCode = await Program.Main(null, console);
 
             exitCode.Should().NotBe(0);
             console.Out.ToString().Should().Contain("Usage");
-        }
-
-        [Fact]
-        public async Task A()
-        {
-            var console = new TestConsole();
-            var exitCode = await ReportPortal.Cli.Program.Main(new string[] { "launch" }, console);
         }
     }
 }

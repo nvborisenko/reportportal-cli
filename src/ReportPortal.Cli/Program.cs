@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ReportPortal.Cli.Commands.Launch;
 using System;
 using System.CommandLine;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-[assembly:InternalsVisibleTo("ReportPortal.Cli.Tests")]
+[assembly: InternalsVisibleTo("ReportPortal.Cli.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace ReportPortal.Cli
 {
@@ -39,6 +41,8 @@ namespace ReportPortal.Cli
             serviceCollection.AddScoped<Settings.IConnectionRepository, Settings.ConnectionRepository>();
 
             serviceCollection.AddSingleton<Http.IApiClient, Http.ApiClient>();
+
+            serviceCollection.AddScoped<LaunchCommandExecutor>();
 
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
