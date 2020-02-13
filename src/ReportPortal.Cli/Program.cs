@@ -5,7 +5,7 @@ using System.CommandLine;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-[assembly:InternalsVisibleTo("ReportPortal.ReportPortal.Cli.Tests")]
+[assembly:InternalsVisibleTo("ReportPortal.Cli.Tests")]
 
 namespace ReportPortal.Cli
 {
