@@ -2,7 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.CommandLine;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+
+[assembly:InternalsVisibleTo("ReportPortal.ReportPortal.Cli.Tests")]
 
 namespace ReportPortal.Cli
 {

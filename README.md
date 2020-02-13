@@ -1,13 +1,13 @@
 # reportportal-cli
-Command line utility to interact with http://reportportal.io via API
+Command line utility to interact with http://reportportal.io API
 
-This is command line utility, would be nice to have it to interact with ReportPortal API. Just an idea how to easily create a launch and share it for agents to report test results into this launch.
+This is command line utility, would be nice to have it to interact with ReportPortal API.
 
 # Install
 
 ## As dotnet tool from nuget.org
 ```
-dotnet tool install reportportal -g
+dotnet tool install reportportal.cli -g
 ```
 
 # Usage

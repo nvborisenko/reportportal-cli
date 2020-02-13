@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ReportPortal.Cli.Settings
+﻿namespace ReportPortal.Cli.Settings
 {
     interface IConnectionRepository
     {
